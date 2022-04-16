@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Nige\ElasticsuiteSearchGraphQl\Model\Resolver\Search\SearchResultProvider">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="10" xsi:type="object">Nige\ElasticsuiteSearchGraphQl\Model\Resolver\Search\DataProvider\SearchTerms</item>
+                <item name="20" xsi:type="object">Nige\ElasticsuiteSearchGraphQl\Model\Resolver\Search\DataProvider\Products</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Nige\ElasticsuiteSearchGraphQl\Model\SearchResultItemTypeResolverComposite">
+        <arguments>
+            <argument name="typeNameResolvers" xsi:type="array">
+                <item name="term_type_resolver" xsi:type="object">Nige\ElasticsuiteSearchGraphQl\Model\Resolver\SearchResultItem\TypeResolver\SearchTerm</item>
+                <item name="product_type_resolver" xsi:type="object">Magento\CatalogGraphQl\Model\ProductInterfaceTypeResolverComposite</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

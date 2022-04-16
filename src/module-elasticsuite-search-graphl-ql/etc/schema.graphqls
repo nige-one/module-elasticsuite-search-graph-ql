@@ -1,0 +1,25 @@
+type Query {
+    search (
+        phrase: String! @doc(description: "Performs a full-text search using the specified phrase."),
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results per search result type (SearchTerm, Product, ...) to return. This attribute is optional."),
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+    ): SearchResult
+    @resolver(class: "Nige\\ElasticsuiteSearchGraphQl\\Model\\Resolver\\SearchResult")
+}
+
+union SearchResultItem @typeResolver(class:"Nige\\ElasticsuiteSearchGraphQl\\Model\\SearchResultItemTypeResolverComposite") =
+SearchTerm | SimpleProduct | VirtualProduct | ConfigurableProduct | BundleProduct | DownloadableProduct | GiftCardProduct | GroupedProduct
+
+type SearchResult @doc(description: "The SearchResultItem object is the top-level object returned in a search.") {
+    items: [SearchResultItem] @doc(description: "An array of result items that match the specified search criteria.")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+    total_count: Int @doc(description: "The number of result items that are visible. By default, in complex products, parent products are visible, but their child products are not.")
+}
+
+type SearchTerm {
+    query_id: Int
+    query_text: String
+    num_results: Int
+    display_in_terms: Boolean
+    popularity: Int
+}

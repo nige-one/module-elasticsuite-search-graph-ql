@@ -1,0 +1,24 @@
+{
+    "name": "nige/elasticsuite-search-graph-ql",
+    "type": "magento2-component",
+    "license": "OSL-3.0",
+    "require": {
+        "smile/elasticsuite": "~2.10.0"
+    },
+    "authors": [
+        {
+            "name": "Nicolas Graeter",
+            "email": "info@graeter-it.de"
+        }
+    ],
+    "description": "Magento 2 GraphQl endpoint for Elasticsuite search engine",
+    "autoload": {
+        "files": [
+            "src/module-elasticsuite-search-graphl-ql/registration.php"
+        ],
+        "psr-4": {
+            "Nige\\ElasticsuiteSearchGraphQl\\": "src/module-elasticsuite-search-graphl-ql"
+        }
+    },
+    "minimum-stability": "dev"
+}
