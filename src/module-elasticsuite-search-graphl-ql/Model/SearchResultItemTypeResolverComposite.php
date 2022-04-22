@@ -37,7 +37,8 @@ class SearchResultItemTypeResolverComposite implements TypeResolverInterface
                 if ($resolvedType) {
                     return $resolvedType;
                 }
-            } catch (GraphQlInputException $exception) {
+            } catch (\Exception $e) {
+                throw new GraphQlInputException(__($e->getMessage()), $e);
             }
         }
 
